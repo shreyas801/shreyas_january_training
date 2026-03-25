@@ -1,0 +1,3 @@
+,cluster_id,size,percentage,avg_age,avg_income,avg_spending_score,avg_num_purchases,avg_total_spending,avg_recency,avg_tenure,customer_type,description
+0,0,9999,99.99,-0.00019303563044372556,-0.00024356732634541435,-6.6369472440932e-05,7.510449612038309e-05,1.8893146668372817e-05,3.4450866018248816e-05,8.030408394793618e-10,Budget Conscious Shoppers,Low frequency and low spending
+1,1,1,0.01,1.9301632688047705,2.43542969612914,0.6636283549338918,-0.7509698567088102,-0.18891257353830904,-0.34447420931697553,-8.029605154218015e-06,Premium Loyal Customers,High spenders who purchase frequently

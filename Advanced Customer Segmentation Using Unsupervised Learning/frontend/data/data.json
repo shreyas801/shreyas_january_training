@@ -1,0 +1,268 @@
+{
+    "metadata": {
+        "projectName": "Customer Segmentation System",
+        "version": "1.0.0",
+        "lastUpdated": "2026-03-03",
+        "totalCustomers": 10000,
+        "algorithm": "K-Means Clustering"
+    },
+    "kpi": {
+        "totalCustomers": 10000,
+        "totalRevenue": 2500000,
+        "totalSegments": 5,
+        "bestModel": "K-Means",
+        "bestScore": 0.32,
+        "avgSpending": 2214,
+        "avgPurchases": 17.6,
+        "churnRate": 18.0
+    },
+    "segments": [
+        {
+            "id": 0,
+            "name": "Premium Loyal",
+            "customerType": "Premium Loyal Customers",
+            "description": "High-value customers with excellent spending patterns and loyalty",
+            "count": 1850,
+            "percentage": 18.5,
+            "avgSpending": 4520,
+            "avgPurchases": 28,
+            "avgIncome": 125000,
+            "avgAge": 45,
+            "avgSpendingScore": 78,
+            "avgRecency": 25,
+            "priority": "HIGH",
+            "churnRisk": "Low",
+            "revenue": 8362000,
+            "revenuePercentage": 33.5,
+            "color": "#667eea"
+        },
+        {
+            "id": 1,
+            "name": "Big Ticket",
+            "customerType": "Big Ticket Buyers",
+            "description": "Customers who make high-value single purchases",
+            "count": 1450,
+            "percentage": 14.5,
+            "avgSpending": 3850,
+            "avgPurchases": 12,
+            "avgIncome": 95000,
+            "avgAge": 52,
+            "avgSpendingScore": 68,
+            "avgRecency": 45,
+            "priority": "HIGH",
+            "churnRisk": "Medium",
+            "revenue": 5582500,
+            "revenuePercentage": 22.3,
+            "color": "#f093fb"
+        },
+        {
+            "id": 2,
+            "name": "Frequent",
+            "customerType": "Frequent Low-Spenders",
+            "description": "Regular shoppers who purchase frequently but with lower transaction values",
+            "count": 2650,
+            "percentage": 26.5,
+            "avgSpending": 1850,
+            "avgPurchases": 35,
+            "avgIncome": 55000,
+            "avgAge": 35,
+            "avgSpendingScore": 48,
+            "avgRecency": 18,
+            "priority": "MEDIUM",
+            "churnRisk": "Low",
+            "revenue": 4902500,
+            "revenuePercentage": 19.6,
+            "color": "#43e97b"
+        },
+        {
+            "id": 3,
+            "name": "Budget",
+            "customerType": "Budget Conscious Shoppers",
+            "description": "Price-sensitive customers with lower spending patterns",
+            "count": 2250,
+            "percentage": 22.5,
+            "avgSpending": 920,
+            "avgPurchases": 8,
+            "avgIncome": 35000,
+            "avgAge": 38,
+            "avgSpendingScore": 28,
+            "avgRecency": 55,
+            "priority": "LOW",
+            "churnRisk": "Medium",
+            "revenue": 2070000,
+            "revenuePercentage": 8.3,
+            "color": "#fa709a"
+        },
+        {
+            "id": 4,
+            "name": "At-Risk",
+            "customerType": "At-Risk Customers",
+            "description": "Inactive customers with high churn probability",
+            "count": 1800,
+            "percentage": 18.0,
+            "avgSpending": 680,
+            "avgPurchases": 5,
+            "avgIncome": 42000,
+            "avgAge": 48,
+            "avgSpendingScore": 22,
+            "avgRecency": 95,
+            "priority": "URGENT",
+            "churnRisk": "High",
+            "revenue": 1224000,
+            "revenuePercentage": 4.9,
+            "color": "#4facfe"
+        }
+    ],
+    "modelPerformance": {
+        "kmeans": {
+            "name": "K-Means Clustering",
+            "silhouetteScore": 0.32,
+            "daviesBouldin": 1.15,
+            "calinskiHarabasz": 8542,
+            "clusters": 5,
+            "isBest": true
+        },
+        "hierarchical": {
+            "name": "Hierarchical Clustering",
+            "silhouetteScore": 0.28,
+            "daviesBouldin": 1.25,
+            "calinskiHarabasz": 7821,
+            "clusters": 5,
+            "isBest": false
+        },
+        "dbscan": {
+            "name": "DBSCAN",
+            "silhouetteScore": 0.21,
+            "daviesBouldin": 1.45,
+            "clusters": 4,
+            "noisePoints": 127,
+            "isBest": false
+        },
+        "gmm": {
+            "name": "Gaussian Mixture Model",
+            "silhouetteScore": 0.26,
+            "bicScore": -15420,
+            "clusters": 5,
+            "isBest": false
+        }
+    },
+    "insights": {
+        "revenueAnalysis": [
+            { "segment": "Premium Loyal", "revenue": 8362000, "percentage": 33.5 },
+            { "segment": "Big Ticket", "revenue": 5582500, "percentage": 22.3 },
+            { "segment": "Frequent", "revenue": 4902500, "percentage": 19.6 },
+            { "segment": "Budget", "revenue": 2070000, "percentage": 8.3 },
+            { "segment": "At-Risk", "revenue": 1224000, "percentage": 4.9 }
+        ],
+        "churnAnalysis": [
+            { "segment": "Premium Loyal", "risk": "Low", "avgRecency": 25 },
+            { "segment": "Big Ticket", "risk": "Medium", "avgRecency": 45 },
+            { "segment": "Frequent", "risk": "Low", "avgRecency": 18 },
+            { "segment": "Budget", "risk": "Medium", "avgRecency": 55 },
+            { "segment": "At-Risk", "risk": "High", "avgRecency": 95 }
+        ],
+        "keyFindings": [
+            "Premium Loyal Customers generate 33.5% of total revenue",
+            "Top 20% of customers contribute 60% of revenue",
+            "At-Risk segment has 95 days average recency - needs immediate attention",
+            "Frequent buyers have highest engagement with 35 avg purchases"
+        ],
+        "actionItems": [
+            "Implement VIP program for Premium Loyal customers",
+            "Launch win-back campaign for At-Risk segment",
+            "Create bundle deals for Frequent low-spenders to increase basket size",
+            "Allocate 35% marketing budget to Premium segment"
+        ]
+    },
+    "marketingStrategies": [
+        {
+            "segment": "Premium Loyal",
+            "priority": "HIGH",
+            "approach": "VIP Treatment & Exclusive Offers",
+            "channels": ["Personal Email", "Phone", "VIP Events"],
+            "offers": [
+                "Early access to new products",
+                "Exclusive discounts",
+                "Personalized recommendations",
+                "Loyalty rewards program"
+            ],
+            "budget": "35%",
+            "color": "#667eea"
+        },
+        {
+            "segment": "Big Ticket",
+            "priority": "HIGH",
+            "approach": "Premium Product Focus",
+            "channels": ["Personal Email", "Direct Mail", "Showroom"],
+            "offers": [
+                "Premium product bundles",
+                "Financing options",
+                "White-glove service",
+                "Exclusive previews"
+            ],
+            "budget": "25%",
+            "color": "#f093fb"
+        },
+        {
+            "segment": "Frequent",
+            "priority": "MEDIUM",
+            "approach": "Engagement & Upselling",
+            "channels": ["Email", "App Notifications", "Social Media"],
+            "offers": [
+                "Bundle deals",
+                "Cross-sell recommendations",
+                "Loyalty points",
+                "Referral programs"
+            ],
+            "budget": "20%",
+            "color": "#43e97b"
+        },
+        {
+            "segment": "Budget",
+            "priority": "LOW",
+            "approach": "Value-Focused Marketing",
+            "channels": ["Email", "Social Media", "Deals Pages"],
+            "offers": [
+                "Discount promotions",
+                "Clearance sales",
+                "Value bundles",
+                "Cashback offers"
+            ],
+            "budget": "10%",
+            "color": "#fa709a"
+        },
+        {
+            "segment": "At-Risk",
+            "priority": "URGENT",
+            "approach": "Win-back Campaigns",
+            "channels": ["Email", "SMS", "Retargeting Ads"],
+            "offers": [
+                "Special comeback discounts",
+                "Limited-time offers",
+                "Feedback surveys",
+                "Personalized re-engagement"
+            ],
+            "budget": "25%",
+            "color": "#4facfe"
+        }
+    ],
+    "distribution": {
+        "age": {
+            "labels": ["18-25", "26-35", "36-45", "46-55", "56-65", "65+"],
+            "data": [1200, 2500, 2800, 1900, 1100, 600]
+        },
+        "income": {
+            "labels": ["<30K", "30-50K", "50-75K", "75-100K", "100-150K", "150K+"],
+            "data": [1500, 2200, 2500, 1800, 1200, 800]
+        },
+        "purchases": {
+            "labels": ["0-5", "6-10", "11-15", "16-20", "21-25", "26-30", "31-35", "36-40", "40+"],
+            "data": [450, 680, 920, 1250, 1580, 1890, 1450, 1020, 760]
+        },
+        "recency": {
+            "labels": ["0-30", "31-60", "61-90", "91-120", "121-150", "151-180", "180+"],
+            "data": [2850, 2450, 1680, 1120, 890, 580, 430]
+        }
+    }
+}
+

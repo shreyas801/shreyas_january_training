@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation Dashboard | AI Intelligence</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span>CustomerAI</span>
+            </div>
+
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="overview">
+                <i class="fas fa-chart-pie"></i>
+                <span>Overview</span>
+            </a>
+            <a href="#" class="nav-item" data-section="segments">
+                <i class="fas fa-users"></i>
+                <span>Customer Segments</span>
+            </a>
+            <a href="#" class="nav-item" data-section="insights">
+                <i class="fas fa-lightbulb"></i>
+                <span>Business Insights</span>
+            </a>
+            <a href="#" class="nav-item" data-section="marketing">
+                <i class="fas fa-bullhorn"></i>
+                <span>Marketing</span>
+            </a>
+            <a href="#" class="nav-item" data-section="visualizations">
+                <i class="fas fa-chart-line"></i>
+                <span>Visualizations</span>
+            </a>
+            <a href="#" class="nav-item" data-section="models">
+                <i class="fas fa-cogs"></i>
+                <span>Model Performance</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-info">
+
+
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>Customer Segmentation Dashboard</h1>
+                <p class="subtitle">AI-Driven Customer Intelligence System</p>
+            </div>
+            <div class="header-right">
+
+                <button class="btn btn-primary" onclick="refreshData()">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh Data
+                </button>
+            </div>
+        </header>
+
+        <!-- Overview Section -->
+        <section class="content-section active" id="overview">
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Total Customers</span>
+                        <span class="kpi-value" id="totalCustomers">10,000</span>
+                        <span class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i> +5.2%
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Total Revenue</span>
+                        <span class="kpi-value" id="totalRevenue">$2.5M</span>
+                        <span class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i> +12.8%
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Customer Segments</span>
+                        <span class="kpi-value" id="totalSegments">5</span>
+                        <span class="kpi-change neutral">
+                            <i class="fas fa-minus"></i> Optimal
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <span class="kpi-label">Best Model</span>
+                        <span class="kpi-value" id="bestModel">K-Means</span>
+                        <span class="kpi-change positive">
+                            <i class="fas fa-star"></i> 0.32 Score
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Cluster Distribution</h3>
+
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="clusterDistributionChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Revenue by Segment</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segment Overview -->
+            <div class="segment-overview">
+                <div class="section-header">
+                    <h2>Customer Segments Overview</h2>
+                    <button class="btn btn-outline" onclick="showSection('segments')">
+                        View All <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="segment-cards" id="segmentCards">
+                    <!-- Segment cards will be dynamically inserted -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Segments Section -->
+        <section class="content-section" id="segments">
+            <div class="section-header">
+                <h2>Customer Segments</h2>
+
+            </div>
+            
+            <div class="segments-table-container">
+                <table class="segments-table" id="segmentsTable">
+                    <thead>
+                        <tr>
+                            <th>Segment</th>
+                            <th>Customer Type</th>
+                            <th>Count</th>
+                            <th>% of Total</th>
+                            <th>Avg Spending</th>
+                            <th>Avg Purchases</th>
+                            <th>Avg Income</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody id="segmentsTableBody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="segment-details" id="segmentDetails">
+                <!-- Detailed segment information -->
+            </div>
+        </section>
+
+        <!-- Insights Section -->
+        <section class="content-section" id="insights">
+            <div class="section-header">
+                <h2>Business Insights</h2>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Revenue Analysis</h3>
+                    </div>
+                    <div class="insight-content" id="revenueAnalysis">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Churn Risk Analysis</h3>
+                    </div>
+                    <div class="insight-content" id="churnAnalysis">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                
+                <div class="insight-card full-width">
+                    <div class="insight-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Key Findings</h3>
+                    </div>
+                    <div class="insight-content" id="keyFindings">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                
+                <div class="insight-card full-width">
+                    <div class="insight-header">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Action Items</h3>
+                    </div>
+                    <div class="insight-content" id="actionItems">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marketing Section -->
+        <section class="content-section" id="marketing">
+            <div class="section-header">
+                <h2>Marketing Recommendations</h2>
+            </div>
+            
+            <div class="marketing-grid" id="marketingRecommendations">
+                <!-- Marketing strategies for each segment -->
+            </div>
+        </section>
+
+        <!-- Visualizations Section -->
+        <section class="content-section" id="visualizations">
+            <div class="section-header">
+                <h2>Data Visualizations</h2>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <div class="viz-header">
+                        <h3>Age vs Spending Score</h3>
+                    </div>
+                    <div class="viz-body">
+                        <canvas id="ageSpendingChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <div class="viz-header">
+                        <h3>Income vs Total Spending</h3>
+                    </div>
+                    <div class="viz-body">
+                        <canvas id="incomeSpendingChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <div class="viz-header">
+                        <h3>Purchase Frequency Distribution</h3>
+                    </div>
+                    <div class="viz-body">
+                        <canvas id="purchaseFreqChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <div class="viz-header">
+                        <h3>Recency Distribution</h3>
+                    </div>
+                    <div class="viz-body">
+                        <canvas id="recencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Models Section -->
+        <section class="content-section" id="models">
+            <div class="section-header">
+                <h2>Model Performance</h2>
+            </div>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>K-Means Clustering</h3>
+                        <span class="model-badge best">Best Model</span>
+                    </div>
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Silhouette Score</span>
+                            <span class="metric-value">0.32</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Clusters</span>
+                            <span class="metric-value">5</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Davies-Bouldin</span>
+                            <span class="metric-value">1.15</span>
+                        </div>
+                    </div>
+                    <div class="model-chart">
+                        <canvas id="kmeansChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>Hierarchical Clustering</h3>
+                    </div>
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Silhouette Score</span>
+                            <span class="metric-value">0.28</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Clusters</span>
+                            <span class="metric-value">5</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Davies-Bouldin</span>
+                            <span class="metric-value">1.25</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>DBSCAN</h3>
+                    </div>
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Silhouette Score</span>
+                            <span class="metric-value">0.21</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Clusters</span>
+                            <span class="metric-value">4</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Noise Points</span>
+                            <span class="metric-value">127</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>Gaussian Mixture Model</h3>
+                    </div>
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Silhouette Score</span>
+                            <span class="metric-value">0.26</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Clusters</span>
+                            <span class="metric-value">5</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">BIC Score</span>
+                            <span class="metric-value">-15420</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="model-comparison">
+                <h3>Model Comparison</h3>
+                <canvas id="modelComparisonChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
+
